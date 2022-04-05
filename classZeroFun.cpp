@@ -302,22 +302,22 @@ T::Real Brent::solve()
  */
 T::Real Newton::solve()
 {
-	T::Real ya = f(a);
-	T::Real resid = std::abs(ya);
+	T::Real y0 = f(x0);
+	T::Real resid = std::abs(y0);
 	unsigned int iter{0u};
 	T::Real check = tol * resid + tola;
 	bool goOn = resid > check;
 	while(goOn && iter < maxIt)
 	{
 		++iter;
-		a += -ya/df(a);
-		ya = f(a);
-		resid = std::abs(ya);
+		x0 += -y0/df(x0);
+		y0 = f(x0);
+		resid = std::abs(y0);
 		goOn = resid > check;
 	}
 
 	if (iter < maxIt)
-		return a;
+		return x0;
 	else
 	{
 		std::cout << "ERROR, could not find the zero" << std::endl;

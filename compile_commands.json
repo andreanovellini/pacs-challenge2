@@ -1,1 +1,22 @@
-[]
+[
+    {
+        "arguments": [
+            "/u/sw/toolchains/gcc-glibc/11.2.0/prefix/bin/g++",
+            "-c",
+            "-fPIC",
+            "main.cpp"
+        ],
+        "directory": "/home/geonove/PACS/challenges/challenge2",
+        "file": "main.cpp"
+    },
+    {
+        "arguments": [
+            "/u/sw/toolchains/gcc-glibc/11.2.0/prefix/bin/g++",
+            "-c",
+            "-fPIC",
+            "classZeroFun.cpp"
+        ],
+        "directory": "/home/geonove/PACS/challenges/challenge2",
+        "file": "classZeroFun.cpp"
+    }
+]

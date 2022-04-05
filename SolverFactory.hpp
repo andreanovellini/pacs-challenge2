@@ -3,14 +3,17 @@
 
 #include <memory>
 #include <string>
+#include <type_traits>
+#include "classZeroFun.hpp"
 
-#include "SolverBase.hpp"
-
-class SovlerFactory 
+class SolverFactory 
 {
-	public:
-		std::unique_ptr<SolverBase> operator()(const std::string& solver_name);
-
+public:
+	template<class SolverType, class ... Args>
+	std::unique_ptr<SolverBase> make_solver(const Args&... args) const
+	{
+		return std::make_unique<SolverType>(args...);	
+	}
 };
 
 #endif

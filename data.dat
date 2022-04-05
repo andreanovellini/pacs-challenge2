@@ -1,0 +1,33 @@
+## RegulaFalsi = RF
+## Bisection = 	 Bi
+## Secant = 		 S
+## Newton = 		 N
+## QuasiNewton = QN
+## Brent = 			 Br
+[Parameters]
+	# Interval lower extreme (Nedeed for: RF, Bi, S, Br)
+	a = -1.0	
+
+	# Interval upper extreme (Nedeed for: RF, Bi, S, Br)
+	b = 1.0
+
+	# Tolerance (Nedeed for: all) 
+	tol = 1e-4
+
+	# Absolute tolerance (Nedeed for: Rf, S, N, QN)
+	tola = 1e-10
+	
+	# Maximum number of interations to find the zero (Nedeed for: S, Br, N, QN)
+	maxIt = 150
+
+	# Step for guessing the interval (Nedeed for: RF, Bi, S, Br)
+	h_interval = 0.01
+	
+	# Maximum number of iterations for guessing the interval (Nedeed for: RF, Bi, S, Br)
+	maxIter = 200
+
+	# Initial point (Nedeed for: N, QN)
+	x0 = 0.0
+
+	# Step for QuasiNewton method (Nedeed for: QN)
+	h = 1e-3
