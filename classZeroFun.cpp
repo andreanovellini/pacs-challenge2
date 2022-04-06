@@ -200,6 +200,7 @@ T::Real Brent::solve()
 {
 	auto ya = f(a);
   auto yb = f(b);
+
   // First check.
   if((ya * yb) >= 0.0)
     {
@@ -211,8 +212,8 @@ T::Real Brent::solve()
 			{
 				std::cout << "ERROR, could not find the zero" << std::endl;
 				 
-				return std::numeric_limits<T::Real>::quiet_NaN();
-			}	// precondition not met
+				return std::numeric_limits<T::Real>::quiet_NaN(); // precondition not met
+			}	 
     };
   //
   if(std::abs(ya) < std::abs(yb))
@@ -230,6 +231,7 @@ T::Real Brent::solve()
   unsigned iter{0u};
   do
     {
+			++iter;
       //
       if(ya != yc and yb != yc)
         {
@@ -282,13 +284,12 @@ T::Real Brent::solve()
           std::swap(a, b);
           std::swap(ya, yb);
         }
-      //
-    }
-  while(ys != 0. && std::abs(b - a) > tol && iter < maxIter);
-	if (iter < maxIter)
+		}
+  while(ys != 0. && std::abs(b - a) > tol && iter < maxIt);
+	if (iter < maxIt)
 		return s;
 	else {
-				std::cout << "ERROR, could not find the zero" << std::endl;
+				std::cout << "ERROR, could not find the zero " << std::endl;
 				 
 				return std::numeric_limits<T::Real>::quiet_NaN();
 	}
@@ -322,6 +323,6 @@ T::Real Newton::solve()
 	{
 		std::cout << "ERROR, could not find the zero" << std::endl;
  
-		return std::numeric_limits<T::Real>::quiet_NaN();
+		 return std::numeric_limits<T::Real>::quiet_NaN();
 	}
 }
