@@ -11,7 +11,7 @@ To build the executable is enough to run `make` inside the folder.
 To run the solver with default parameters is enough to run the created executable, by running `./main` from inside the folder.
 
 Example of execution:
-`./main method=MethodName -f data`.
+`./main method=MethodName -f data.dat`.
 
 To change the parameters it is possible to modify the `data.dat` file with the desired parameters. 
 Another option is to create a new `.dat` file and passing it from command line thanks to GetPot usinge the `-f` or `--file` option.
