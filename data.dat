@@ -6,16 +6,16 @@
 ## Brent = 			 Br
 [Parameters]
 	# Interval lower extreme (Nedeed for: RF, Bi, S, Br)
-	a = -1.0	
+	a = -1	
 
 	# Interval upper extreme (Nedeed for: RF, Bi, S, Br)
-	b = 1.0
+	b = 1
 
 	# Tolerance (Nedeed for: all) 
-	tol = 1e-4
+	tol = 1e-40
 
 	# Absolute tolerance (Nedeed for: Rf, S, N, QN)
-	tola = 1e-10
+	tola = 1e-100
 	
 	# Maximum number of interations to find the zero (Nedeed for: S, Br, N, QN)
 	maxIt = 150

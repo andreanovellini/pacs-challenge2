@@ -54,7 +54,6 @@ std::tuple<T::Real, T::Real, bool> SolverWithInterval::bracketInterval(const T::
 	// swap to get elements in the correct order even when negative
 	if (x1 > x2)
 		std::swap(x1, x2);
-	
 	if (iter < maxIter)
 		std::cout << "Bracket interval found: [" << x1 << ", " << x2 << "]" << std::endl;
 

@@ -20,7 +20,7 @@ int main(int argc, char** argv)
 	// Read from command_line the datafile name and the method name	
 	GetPot command_line(argc, argv);
 
-	const std::string filename = command_line.follow("data", 2, "-f", "--file" );
+	const std::string filename = command_line.follow("data.dat", 2, "-f", "--file" );
 	const std::string method = command_line("method", "Bisection");
 
 	// Read parameters from datafile
@@ -44,21 +44,21 @@ int main(int argc, char** argv)
 	if (method == "RegulaFalsi")
 	{	
 		// Regula Falsi method
-		solver_ptr = solver.make_solver<RegulaFalsi>(fun, a, b, tol, tola);
+		solver_ptr = solver.make_solver<RegulaFalsi>(fun, a, b, tol, tola, h_interval, maxIter);
 	}
 	else if (method == "Bisection")
 	{
 		// Bisection method
-		solver_ptr = solver.make_solver<Bisection>(fun, a, b, tol);
+		solver_ptr = solver.make_solver<Bisection>(fun, a, b, tol, h_interval, maxIter);
 	}
 	else if (method == "Secant")
 	{
 		// Secant method 
-		solver_ptr = solver.make_solver<Secant>(fun, a, b, tol, tola, maxIt);
+		solver_ptr = solver.make_solver<Secant>(fun, a, b, tol, tola, maxIt, h_interval, maxIter);
 	}
 	else if (method == "Brent")
 	{
-		solver_ptr = solver.make_solver<Brent>(fun, a, b, tol, maxIt);
+		solver_ptr = solver.make_solver<Brent>(fun, a, b, tol, maxIt, h_interval, maxIter);
 	}
 	else if (method == "Newton")
 	{

@@ -35,20 +35,18 @@ class SolverWithInterval : public SolverBase
 {
 public:
 	// Constructor for when the interval extremes are provided by the user
-	SolverWithInterval(const T::FunType& f_, const T::Real& a_, const T::Real& b_, const T::Real& tol_) : 
-		SolverBase(f_, tol_), a(a_), b(b_), x1((a_ + b_) / 2.), h_interval(0.), maxIter(0u) 
+	SolverWithInterval(const T::FunType& f_, const T::Real& a_, const T::Real& b_, const T::Real& tol_, const T::Real& h_interval_, const unsigned int& maxIter_) : 
+		SolverBase(f_, tol_), a(a_), b(b_), x1((a_ + b_) / 2.), h_interval(h_interval_), maxIter(maxIter_) 
 	{
 		if (f(a) * f(b) > 0)
 		{
-			std::cout << "The provided interval is not valid... Trying to find a new one that it is" << std::endl;
+			std::cout << "The provided interval is not valid... Trying to find a valid one" << std::endl;
 
 			auto result = bracketInterval(f, x1, h_interval, maxIter);
 			if (std::get<2>(result))
 			{
 				a = std::get<0>(result);
 				b = std::get<1>(result);
-
-				std::cout << "The new interval will be [" << a << ", " << b << "] instead" << std::endl;
 			}
 			else 
 			{
@@ -85,8 +83,8 @@ class RegulaFalsi final : public SolverWithInterval
 {
 public:
 	// Constructor for when the interval is provided by the user
-	RegulaFalsi(const T::FunType& f_, const T::Real& a_, const T::Real& b_, const T::Real& tol_, const T::Real& tola_) : 
-		SolverWithInterval(f_, a_, b_, tol_), tola(tola_) {}
+	RegulaFalsi(const T::FunType& f_, const T::Real& a_, const T::Real& b_, const T::Real& tol_, const T::Real& tola_, const T::Real& h_interval_ = 0.01, const unsigned int& maxIter_ = 200) : 
+		SolverWithInterval(f_, a_, b_, tol_, h_interval_, maxIter_), tola(tola_) {}
 
 	T::Real solve() override;
 
@@ -102,8 +100,8 @@ class Bisection final: public SolverWithInterval
 {
 public:
 	// Constructor used when interval extremes are provided by the user
-	Bisection(const T::FunType& f_, const T::Real& a_, const T::Real& b_, const T::Real& tol_) : 
-		SolverWithInterval(f_, a_, b_, tol_) {}
+	Bisection(const T::FunType& f_, const T::Real& a_, const T::Real& b_, const T::Real& tol_, const T::Real& h_interval_ = 0.01, const unsigned int& maxIter_ = 200) : 
+		SolverWithInterval(f_, a_, b_, tol_, h_interval_, maxIter_) {}
 
 	T::Real solve() override;	
 
@@ -116,8 +114,8 @@ class Secant final : public SolverWithInterval
 {
 public:
 	// Constructor for when interval extremes are provided by the user
-	Secant(const T::FunType& f_, const T::Real& a_, const T::Real& b_, const T::Real& tol_, const T::Real& tola_, const unsigned int& maxIt_) : 
-		SolverWithInterval(f_, a_, b_, tol_), tola(tola_), maxIt(maxIt_) {}
+	Secant(const T::FunType& f_, const T::Real& a_, const T::Real& b_, const T::Real& tol_, const T::Real& tola_, const unsigned int& maxIt_, const T::Real& h_interval_ = 0.01, const unsigned int& maxIter_ = 200) : 
+		SolverWithInterval(f_, a_, b_, tol_, h_interval_, maxIter_), tola(tola_), maxIt(maxIt_) {}
 	
 	T::Real solve() override;
 
@@ -135,8 +133,8 @@ class Brent final : public SolverWithInterval
 {
 public:
 	// Constructor for when interval extremes are provided by the user
-	Brent(const T::FunType& f_, const T::Real& a_, const T::Real& b_, const T::Real tol_, const unsigned int& maxIt_) : 
-		SolverWithInterval(f_, a_, b_, tol_), maxIt(maxIt_) {}
+	Brent(const T::FunType& f_, const T::Real& a_, const T::Real& b_, const T::Real tol_, const unsigned int& maxIt_, const T::Real& h_interval_ = 0.01, const unsigned int& maxIter_ = 200) : 
+		SolverWithInterval(f_, a_, b_, tol_, h_interval_, maxIter_), maxIt(maxIt_) {}
 
 	T::Real solve() override;
 
