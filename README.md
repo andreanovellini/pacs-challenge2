@@ -4,4 +4,4 @@ This program implements few methods for computing the zero of a function in a hi
 
 ## Build 
 
-To build the executable is enough to run 'make' inside the folder.
+To build the executable is enough to run `make` inside the folder.
