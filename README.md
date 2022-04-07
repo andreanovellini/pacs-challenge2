@@ -16,8 +16,9 @@ Example of execution:
 To change the parameters it is possible to modify the `data.dat` file with the desired parameters. 
 Another option is to create a new `.dat` file and passing it from command line thanks to GetPot usinge the `-f` or `--file` option.
 The available methods are:
-- Regula Falsi -> Method Name: `RegulaFalsi`
-- Bisection    -> Method Name: `Bisection`
-- Secant       -> Method Name: `Secant`
-- Newton       -> Method Name: `Newton`
-- Quasi Newton -> Method Name: `QuasiNewton`
+- Regula Falsi -> MethodName: `RegulaFalsi`
+- Bisection    -> MethodName: `Bisection`
+- Secant       -> MethodName: `Secant`
+- Brent        -> MethodName: `Brent`
+- Newton       -> MethodName: `Newton`
+- Quasi Newton -> MethodName: `QuasiNewton`
