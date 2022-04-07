@@ -20,24 +20,25 @@ int main(int argc, char** argv)
 	// Read from command_line the datafile name and the method name	
 	GetPot command_line(argc, argv);
 
-	const std::string filename = command_line.follow("data.dat", 2, "-f", "--file" );
-	const std::string method = command_line("method", "Bisection");
+	const std::string filename = command_line.follow("data.dat", 2, "-f", "--file" ); // file storing the parameters
+	const std::string method = command_line("method", "Bisection");	// method name
 
 	// Read parameters from datafile
 	GetPot datafile(filename.c_str());
 	
 	const	std::string section = "Parameters/";
 	
-	const T::Real a = datafile((section + "a").data(), -1.0);
-	const	T::Real b = datafile((section + "b").data(), 1.0);
-	const T::Real tol = datafile((section + "tol").data(), 1e-4);
-	const T::Real tola = datafile((section + "tola").data(), 1e-10);
-	const unsigned int maxIt = datafile((section + "maxIt").data(), 150);
-	const T::Real h_interval = datafile((section + "h_interval").data(), 0.01);
-	const unsigned int maxIter = datafile((section + "maxIter").data(), 200);
-	const T::Real x0 = datafile((section + "x0").data(), 0.0);
-	const T::Real h = datafile((section + "h").data(), 1e-3);
+	const T::Real a = datafile((section + "a").data(), -1.0);										// Interval lower extreme
+	const	T::Real b = datafile((section + "b").data(), 1.0);										// Interval upper extreme
+	const T::Real tol = datafile((section + "tol").data(), 1e-4);								// Tolerance
+	const T::Real tola = datafile((section + "tola").data(), 1e-10);						// Absolute tolerance
+	const unsigned int maxIt = datafile((section + "maxIt").data(), 150);				// Max number of iteration for the methods
+	const T::Real h_interval = datafile((section + "h_interval").data(), 0.01);	// Step for the bracket interval function
+	const unsigned int maxIter = datafile((section + "maxIter").data(), 200);		// Max number of iteration for bracket interval function
+	const T::Real x0 = datafile((section + "x0").data(), 0.0);									// Starting point for Newton-like methods
+	const T::Real h = datafile((section + "h").data(), 1e-3);										// Step for derivative approximation in QuasiNewton method
 
+	// Solver declaration
 	SolverFactory solver;
 	std::unique_ptr<SolverBase> solver_ptr = nullptr;
 
@@ -58,6 +59,7 @@ int main(int argc, char** argv)
 	}
 	else if (method == "Brent")
 	{
+		// Brent
 		solver_ptr = solver.make_solver<Brent>(fun, a, b, tol, maxIt, h_interval, maxIter);
 	}
 	else if (method == "Newton")
@@ -76,6 +78,7 @@ int main(int argc, char** argv)
 		return 1;
 	}
 	
+	// Solving for zero	
 	const T::Real zero = solver_ptr -> solve();
 	
 	if (zero != std::numeric_limits<T::Real>::quiet_NaN())
@@ -86,5 +89,6 @@ int main(int argc, char** argv)
 	{
 		std::cout << "Zero couldn't be found" << std::endl;
 	}
+
 	return 0;
 }

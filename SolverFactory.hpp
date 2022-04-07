@@ -6,6 +6,7 @@
 #include <type_traits>
 #include "classZeroFun.hpp"
 
+// Simple factory for solver initialization
 class SolverFactory 
 {
 public:

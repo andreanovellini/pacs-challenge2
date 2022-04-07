@@ -64,7 +64,7 @@ std::tuple<T::Real, T::Real, bool> SolverWithInterval::bracketInterval(const T::
 /*!
  * Compute the zero of a scalar function with the method of regula falsi
  *
- * @return The approximation of the zero of f 
+ * @return The approximation of the zero of f (NaN if not found) 
  */
 T::Real RegulaFalsi::solve()
 {
@@ -118,7 +118,7 @@ T::Real RegulaFalsi::solve()
  * Compute the zero of a scalar function with the method of bisection
  * The returned value is far from the zero at most given tolerance;
  *
- * @return The approximation of the zero of f
+ * @return The approximation of the zero of f (NaN if not found)
  *
  */
 T::Real Bisection::solve()
@@ -160,7 +160,7 @@ T::Real Bisection::solve()
 /*!
  * Computes the zero of a scalar function with the method of the secant
  * 
- * @return The approximation of the zero of f
+ * @return The approximation of the zero of f (NaN if not found)
  *
  */
 T::Real Secant::solve()
@@ -195,6 +195,11 @@ T::Real Secant::solve()
 }
 
 // Brent implemetation
+/*!
+ *	Computes the zero of a scalar function with the brent method
+ *
+ *	@return The approximation of the zero of f (NaN if not found)
+ */
 T::Real Brent::solve() 
 {
 	auto ya = f(a);
@@ -296,9 +301,10 @@ T::Real Brent::solve()
 
 // Newton implemetation
 /*!
- * Computes the zero of a scalar function with the method of Newton
+ * Computes the zero of a scalar function with the method of Newton.
+ * Quasi-Newton methods will rely on this implemetation, the only difference will be that the derivative will be approximated with finite differences when creating the object
  *
- * @return The approximation of the zero of f
+ * @return The approximation of the zero of f (NaN if not found)
  */
 T::Real Newton::solve()
 {

@@ -29,7 +29,7 @@ protected:
 };
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * Base class for solvers that rely on interval to find the zero in  *
+ * Base class for solvers that rely on an interval to find the zero  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 class SolverWithInterval : public SolverBase
 {
@@ -40,11 +40,13 @@ public:
 	{
 		if (f(a) * f(b) > 0)
 		{
+			// If the interval is not valid, look for a valid one
 			std::cout << "The provided interval is not valid... Trying to find a valid one" << std::endl;
 
 			auto result = bracketInterval(f, x1, h_interval, maxIter);
 			if (std::get<2>(result))
 			{
+				// If valid interval was found intialize extremes
 				a = std::get<0>(result);
 				b = std::get<1>(result);
 			}
