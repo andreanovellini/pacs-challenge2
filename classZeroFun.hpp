@@ -46,7 +46,7 @@ public:
 			auto result = bracketInterval(f, x1, h_interval, maxIter);
 			if (std::get<2>(result))
 			{
-				// If valid interval was found intialize extremes
+				// If valid interval was found initialize extremes
 				a = std::get<0>(result);
 				b = std::get<1>(result);
 			}
