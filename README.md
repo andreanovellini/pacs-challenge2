@@ -1,4 +1,4 @@
-# Hierarchy of solvers for f(x)=0
+# A hierarchy of solvers for f(x)=0
 
 This program implements few methods for computing the zero of a function in a hierarchical structure.
 
