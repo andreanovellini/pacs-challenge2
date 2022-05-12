@@ -1,6 +1,6 @@
 # A hierarchy of solvers for f(x)=0
 
-This program implements classes, in a hierarchy structure, for computing the zero of a function.
+This program implements a hierarchy of classes for computing the zero of a function.
 
 ## Build 
 
